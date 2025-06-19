@@ -6,6 +6,7 @@ import { Head, usePage } from "@inertiajs/react";
 import { router } from "@inertiajs/react";
 import { CheckCircle2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
+import MyCourses from "./my-courses";
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -51,6 +52,9 @@ export default function Course(){
                     <Button onClick={createCourse} className="mt-2">
                         Create Course
                     </Button>
+                </div>
+                <div>
+                    <MyCourses/>
                 </div>
             </div>
         </AppLayout>
