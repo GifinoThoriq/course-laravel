@@ -21,6 +21,6 @@ class CourseController extends Controller
         $new_course->description = 'New Course Description';
         $new_course->save();
 
-        return;
+        return back()->with('success', 'Course created successfully!');
     }
 }
