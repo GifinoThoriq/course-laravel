@@ -26,9 +26,10 @@ export interface SharedData {
     name: string;
     quote: { message: string; author: string };
     auth: Auth;
-    flash: {success: string};
+    flash: {success: string; flash_id: string};
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
+    courses: ICourses[];
     [key: string]: unknown;
 }
 
@@ -41,4 +42,10 @@ export interface User {
     created_at: string;
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
+}
+
+export interface ICourses{
+    id: number;
+    name: string;
+    description: string;
 }

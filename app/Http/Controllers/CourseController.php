@@ -9,8 +9,12 @@ use App\Models\Course;
 
 class CourseController extends Controller
 {
-    public function index(){
-        return Inertia::render('Course/Index/index');
+    public function index(Request $request){
+        $user = $request->user();
+        $courses = $user -> courses;
+        return Inertia::render('Course/Index/index', [
+            'courses' => $courses
+        ]);
     }
 
     public function create(User $user){
@@ -21,6 +25,9 @@ class CourseController extends Controller
         $new_course->description = 'New Course Description';
         $new_course->save();
 
-        return back()->with('success', 'Course created successfully!');
+        return back()->with([
+            'success' => 'Course created successfully kocak!',
+            'flash_id' => uniqid()
+        ]);
     }
 }

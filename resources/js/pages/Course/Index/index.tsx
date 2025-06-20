@@ -19,7 +19,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 export default function Course(){
 
 
-    const { auth, flash } = usePage<SharedData>().props;
+    const { auth, flash, courses } = usePage<SharedData>().props;
 
     const createCourse = () => {
         router.post(route('course.create', { user:  auth.user.id}))
@@ -27,8 +27,10 @@ export default function Course(){
 
     const [message, setMessage] = useState<string | null>(flash.success);
 
+    console.log(flash)
+
     useEffect(() => {
-        if (flash.success) {
+        if (flash.success && flash.flash_id) {
           setMessage(flash.success);
       
           const timer = setTimeout(() => {
@@ -37,7 +39,7 @@ export default function Course(){
       
           return () => clearTimeout(timer);
         }
-      }, [flash.success]);
+      }, [flash.flash_id]);
     return(
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Course"/>
@@ -53,8 +55,10 @@ export default function Course(){
                         Create Course
                     </Button>
                 </div>
-                <div>
-                    <MyCourses/>
+                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+                    {courses.map((course, index) => (
+                        <MyCourses key={index} course={course}/>
+                    )) }
                 </div>
             </div>
         </AppLayout>

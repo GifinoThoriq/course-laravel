@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 abstract class Controller
 {
-    public function index(){
-        dd('aku ada disni');
+    public function index(Request $request){
+       
     }
 }
