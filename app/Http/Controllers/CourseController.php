@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Course;
+use Illuminate\Support\Facades\Redirect;
 
 class CourseController extends Controller
 {
@@ -35,5 +36,30 @@ class CourseController extends Controller
         return Inertia::render('Course/View/index', [
             'course' => $course
         ]);
+    }
+
+    public function edit(Course $course){
+        return Inertia::render('Course/Edit/index', [
+            'course' => $course
+        ]);
+    }
+
+    public function update(Request $request, Course $course){
+        
+        //validation
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max: 15'],
+            'description' => ['required', 'string', 'max: 200']
+        ]);
+
+        $course->name = $request->name;
+        $course->description = $request->description;
+        $course->save();
+
+        return Redirect()->route('course')->with([
+            'success' => 'Course Edit successfully!',
+            'flash_id' => uniqid()
+        ]);
+
     }
 }

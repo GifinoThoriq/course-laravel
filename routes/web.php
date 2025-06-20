@@ -29,5 +29,15 @@ Route::middleware(['auth', 'verified'])
     ->get('/course/{course}', [CourseController::class, 'view'])
     ->name('course.view');
 
+//Course edit detail page
+Route::middleware(['auth', 'verified'])
+    ->get('/course/edit/{course}', [CourseController::class, 'edit'])
+    ->name('course.edit');
+
+//Course edit
+Route::middleware(['auth', 'verified'])
+->post('/course/edit/{course}', [CourseController::class, 'update'])
+->name('course.update');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

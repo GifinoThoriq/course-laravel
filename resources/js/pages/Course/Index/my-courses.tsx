@@ -15,8 +15,11 @@ export default function MyCourses({course}: MyCoursesProps){
                     <CardDescription>{course.description}</CardDescription>
                 </CardHeader>
                 <CardFooter>
-                    <Link href={route('course.view', {id: course.id})} prefetch>
-                        <span>View Detail</span>
+                    <Link href={route('course.view', {id: course.id})} prefetch className="mr-2">
+                        <span>View</span>
+                    </Link>
+                    <Link href={route('course.edit', {id: course.id})} prefetch>
+                        <span>Edit</span>
                     </Link>
                 </CardFooter>
             </Card>
