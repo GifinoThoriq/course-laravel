@@ -48,6 +48,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),
+                'flash_id' => fn () => $request->session()->get('flash_id')
             ],
             'ziggy' => fn (): array => [
                 ...(new Ziggy)->toArray(),
