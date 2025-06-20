@@ -24,5 +24,10 @@ Route::middleware(['auth', 'verified'])
     ->post('/course/{user}', [CourseController::class, 'create']) //get from controller namne
     ->name('course.create');
 
+//Course view detail
+Route::middleware(['auth', 'verified'])
+    ->get('/course/{course}', [CourseController::class, 'view'])
+    ->name('course.view');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

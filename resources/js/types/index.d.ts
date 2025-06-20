@@ -30,6 +30,7 @@ export interface SharedData {
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
     courses: ICourses[];
+    course: ICourses;
     [key: string]: unknown;
 }
 

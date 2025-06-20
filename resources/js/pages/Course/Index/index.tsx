@@ -27,8 +27,6 @@ export default function Course(){
 
     const [message, setMessage] = useState<string | null>(flash.success);
 
-    console.log(flash)
-
     useEffect(() => {
         if (flash.success && flash.flash_id) {
           setMessage(flash.success);

@@ -26,8 +26,14 @@ class CourseController extends Controller
         $new_course->save();
 
         return back()->with([
-            'success' => 'Course created successfully kocak!',
+            'success' => 'Course created successfully!',
             'flash_id' => uniqid()
+        ]);
+    }
+
+    public function view(Course $course){
+        return Inertia::render('Course/View/index', [
+            'course' => $course
         ]);
     }
 }
