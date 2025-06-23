@@ -39,5 +39,10 @@ Route::middleware(['auth', 'verified'])
 ->post('/course/edit/{course}', [CourseController::class, 'update'])
 ->name('course.update');
 
+//Course delete
+Route::middleware(['auth', 'verified'])
+->delete('/course/delete/{course}', [CourseController::class, 'delete'])
+->name('course.delete');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

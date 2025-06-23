@@ -62,4 +62,13 @@ class CourseController extends Controller
         ]);
 
     }
+
+    public function delete(Course $course){
+        $course->delete();
+
+        return Redirect()->route('course')->with([
+            'success' => 'Course Deleted :(',
+            'flash_id' => uniqid()
+        ]);
+    }
 }
