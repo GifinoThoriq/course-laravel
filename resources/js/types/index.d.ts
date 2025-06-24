@@ -3,6 +3,7 @@ import type { Config } from 'ziggy-js';
 
 export interface Auth {
     user: User;
+    permissions: IPermission;
 }
 
 export interface BreadcrumbItem {
@@ -49,4 +50,9 @@ export interface ICourses{
     id: number;
     name: string;
     description: string;
+    user: User;
+}
+
+interface IPermission{
+    canManageUsers: boolean;
 }

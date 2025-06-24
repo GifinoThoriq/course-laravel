@@ -7,12 +7,12 @@ use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Course;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Gate;
 
 class CourseController extends Controller
 {
-    public function index(Request $request){
-        $user = $request->user();
-        $courses = $user -> courses;
+    public function index(){
+        $courses = Course::with('user')->get();
         return Inertia::render('Course/Index/index', [
             'courses' => $courses
         ]);
@@ -33,12 +33,16 @@ class CourseController extends Controller
     }
 
     public function view(Course $course){
+        Gate::authorize('view', $course);
+
         return Inertia::render('Course/View/index', [
             'course' => $course
         ]);
     }
 
     public function edit(Course $course){
+        Gate::authorize('edit', $course);
+
         return Inertia::render('Course/Edit/index', [
             'course' => $course
         ]);
@@ -46,6 +50,9 @@ class CourseController extends Controller
 
     public function update(Request $request, Course $course){
         
+
+        Gate::authorize('update', $course);
+
         //validation
         $validated = $request->validate([
             'name' => ['required', 'string', 'max: 15'],
@@ -64,6 +71,9 @@ class CourseController extends Controller
     }
 
     public function delete(Course $course){
+
+        Gate::authorize('delete', $course);
+
         $course->delete();
 
         return Redirect()->route('course')->with([

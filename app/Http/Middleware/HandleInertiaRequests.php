@@ -45,6 +45,11 @@ class HandleInertiaRequests extends Middleware
             'quote' => ['message' => trim($message), 'author' => trim($author)],
             'auth' => [
                 'user' => $request->user(),
+                'permissions' => [
+                    'canManageUsers' => fn () => $request->user()
+                        ? $request->user()->hasPermissionTo('manage users')
+                        : null
+                ]
             ],
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),

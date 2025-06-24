@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 abstract class Controller
 {
-    public function index(Request $request){
+    public function index(){
        
     }
 }

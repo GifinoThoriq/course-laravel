@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/react";
 import { Trash2Icon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import Delete from "../Delete/Index";
+import Delete from "../Delete/index";
 
 interface MyCoursesProps{
     course: ICourses;
@@ -21,6 +21,7 @@ export default function MyCourses({course}: MyCoursesProps){
                     <div>
                         <CardTitle>{course.name}</CardTitle>
                         <CardDescription>{course.description}</CardDescription>
+                        <span className="text-sm">Created by: {course.user.name}</span>
                     </div>
                         <div onClick={()=>setOpen(true)}>
                             <span>{<Trash2Icon/>}</span>

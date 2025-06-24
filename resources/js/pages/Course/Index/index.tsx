@@ -38,6 +38,7 @@ export default function Course(){
           return () => clearTimeout(timer);
         }
       }, [flash.flash_id]);
+
     return(
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Course"/>
